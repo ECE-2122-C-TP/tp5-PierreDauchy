@@ -11,7 +11,8 @@
 * - OUT : la structure Ecole avec les infos nbDeClasses, nbTotalEleves, nomEcole, moyenne
 */
 
-Ecole saisirInfos (void){
+Ecole saisirInfos (void)
+{
     Ecole e;
     printf("Veuillez saisir les informations : nbDeClasses, nbTotalEleves, nomEcole, moyenne\n");
     scanf("%i %i %c %f", &e.nbDeClasses, &e.nbTotalEleves, &e.nomEcole, &e.moyenne);
@@ -20,7 +21,8 @@ Ecole saisirInfos (void){
 
 //ou
 
-Ecole saisirInfosBis (void){              // plus lisible par l'utilisateur
+Ecole saisirInfosBis (void)
+{              // plus lisible par l'utilisateur
     Ecole E;
     printf("Veuillez saisir le nombre de classes :\n>");
     scanf("%i", &E.nbDeClasses);
@@ -39,7 +41,8 @@ Ecole saisirInfosBis (void){              // plus lisible par l'utilisateur
 * - OUT : les informations affichées dans la console sur l'école
 */
 
-void afficherInfos(Ecole e){
+void afficherInfos(Ecole e)
+{
     printf(" nbDeClasses = %i\n", e.nbDeClasses);
     printf("nbTotalEleves = %i\n", e.nbTotalEleves);
     printf("nomEcole = %c\n", e.nomEcole);
@@ -57,13 +60,14 @@ void afficherInfos(Ecole e){
 * - OUT : la structure Rationnel avec ses deuc paramètres
 */
 
-NombreRationnel saisirNumerateurEtDenominateur(void){
+NombreRationnel saisirNumerateurEtDenominateur(void)
+{
     NombreRationnel R = {0 , 0};
     printf("Saisir le numerateur du nombre rationnel : \n>");
     scanf("%i", &R.numerateur);
     printf("Saisir le denominateur du nombre rationnel : \n>");
     scanf("%i", &R.denominateur);
-    while (R.denominateur == 0)
+    while (R.denominateur == 0)                        // eviter les nombres rationnels avec un denominateur nul
     {
         printf("La divivsion par zero pose quelques problemes...\n>");
         scanf("%i", &R.denominateur);
@@ -76,15 +80,17 @@ NombreRationnel saisirNumerateurEtDenominateur(void){
 * - IN : La structure NombreRationnel que l'on veut afficher
 * - OUT : les inforamtions (numerateur et denominateur) sur le nombre rationnel dans la console
 */
-void afficherNombreRationnel(NombreRationnel R){
+void afficherNombreRationnel(NombreRationnel R)
+{
     printf("%i\n", R.numerateur);
     printf("%i\n", R.denominateur);
     return;
 }
 
-//ou
+//ou avec plus de texte
 
-void afficherNombreRationnelBis(NombreRationnel R){
+void afficherNombreRationnelBis(NombreRationnel R)
+{
     printf("Le numerateur de ce nombre rationnel vaut : %i\n", R.numerateur);
     printf("Le denominateur de ce nombre rationnel vaut : %i\n", R.denominateur);
     return ;
@@ -96,7 +102,8 @@ void afficherNombreRationnelBis(NombreRationnel R){
 * - OUT : Le nombre rationnel optenue a la suite de ce calcul (structure) = RM
 */
 
-NombreRationnel multiplierDeuxNombresRationnels(NombreRationnel R1, NombreRationnel R2){
+NombreRationnel multiplierDeuxNombresRationnels(NombreRationnel R1, NombreRationnel R2)
+{
     NombreRationnel RM = {0, 0};
     RM.numerateur = R1.numerateur * R2.numerateur;
     RM.denominateur = R1.denominateur * R2.denominateur;
@@ -110,7 +117,8 @@ NombreRationnel multiplierDeuxNombresRationnels(NombreRationnel R1, NombreRation
 * - OUT : Le nombre rationnel optenue a la suite de ce calcul (structure) = RA
 */
 
-NombreRationnel additionnerDeuxNombresRationnels(NombreRationnel R1, NombreRationnel R2){
+NombreRationnel additionnerDeuxNombresRationnels(NombreRationnel R1, NombreRationnel R2)
+{
     NombreRationnel RA = {0, 0};
     RA.numerateur = R1.numerateur * R2.denominateur + R2.numerateur * R1.denominateur;
     RA.denominateur = R1.denominateur * R2.denominateur;
@@ -128,7 +136,8 @@ NombreRationnel additionnerDeuxNombresRationnels(NombreRationnel R1, NombreRatio
 * - OUT : Le nombre rationnel simplifié
 */
 
-NombreRationnel simplifierNombreRationnel(NombreRationnel R){
+NombreRationnel simplifierNombreRationnel(NombreRationnel R)
+{
     int i = 0;
     NombreRationnel RationnelSimplifie = {R.numerateur, R.denominateur};            //Pour rationnel simplifié
     if (RationnelSimplifie.numerateur > RationnelSimplifie.denominateur)
@@ -166,12 +175,13 @@ NombreRationnel simplifierNombreRationnel(NombreRationnel R){
 * - OUT : Le PGCD du numérateur et du dénominateur de ce nombre rationnel
 */
 
-int pGCD(NombreRationnel nbR1){
+int pGCD(NombreRationnel nbR1)
+{
     int PGCD = 0;
-    if (nbR1.numerateur > nbR1.denominateur)
+    if (nbR1.numerateur > nbR1.denominateur)                                   // cela permet de reduire le nombre de calculs necessaires en prenant le plus grand PGCD potentiel
     {
         PGCD = nbR1.denominateur;
-        while (PGCD >= 0 && !(nbR1.numerateur % PGCD == 0 && nbR1.denominateur % PGCD == 0))
+        while (PGCD >= 0 && !(nbR1.numerateur % PGCD == 0 && nbR1.denominateur % PGCD == 0))                   // la condition permet de s'arreter quand on a trouvé le pgcd ou que l'on a un pgcd = 1
         {
             PGCD -= 1;
         }
@@ -193,14 +203,15 @@ int pGCD(NombreRationnel nbR1){
 * - OUT : Le nombre rationnel simplifié
 */
 
-NombreRationnel simplification(NombreRationnel nbR1){
-    NombreRationnel nbR2 = nbR1;
-    int PGCDTemp = pGCD(nbR1);
-    while (PGCDTemp > 1)
+NombreRationnel simplification(NombreRationnel nbR1)
+{
+    NombreRationnel nbR2 = nbR1;                 // on prend le nombre rationnel de depart comme base à simplifier
+    int PGCDTemp = pGCD(nbR1);               // on crée le pgcd temporaire du nombre rationnel de depart qui va ensuite evoluer plus le nombre rationnel est simplifié
+    while (PGCDTemp > 1)                       // on parcours tous les diviseurs communs des numérateurs et dénominateurs
     {
-        nbR2.numerateur = nbR2.numerateur / PGCDTemp;
+        nbR2.numerateur = nbR2.numerateur / PGCDTemp;                    // on actualise les valeurs qui permettent de simplifier le nombre rationnel
         nbR2.denominateur = nbR2.denominateur / PGCDTemp;
-        PGCDTemp = pGCD(nbR2);
+        PGCDTemp = pGCD(nbR2);                                       // et on cherche le pgcd du nouveau nombre rationnel à simplifieer si possible
     }
     return nbR2;
 }
@@ -215,14 +226,15 @@ NombreRationnel simplification(NombreRationnel nbR1){
 * - OUT : le nombre de valeurs entré
 */
 
-int saisirNombreDeValeursTableau (void){
+int saisirNombreDeValeursTableau (void)
+{
     int N = 0;
     do
     {
         printf("Veuillez saisir le nombre de valeurs que vous voulez saisir dans le tableau (<100) : \n>");
         scanf("%i", &N);
     }
-    while (N > 100);
+    while (N > 100);                        // permet de redemander le nombre de valeurs si l'utilisateur rentre un nombre plus grand que 100
     return N;
 }
 
@@ -233,10 +245,11 @@ int saisirNombreDeValeursTableau (void){
 * - OUT : Le tableau modifié
 */
 
-int saisirValeurDansTableau(int indiceDansTableau, int monTableau[100]){
-    printf("Saisir la valeur a entrer a l'espace d'indice %i \n>", indiceDansTableau + 1);    // en partant de 1 a la premiere valeur
+void saisirValeurDansTableau(int indiceDansTableau, int monTableau[100])
+{
+    printf("Saisir la valeur a entrer a l'espace d'indice %i \n>", indiceDansTableau + 1);    // en partant de 1 a la premiere valeur pour plus de compréhensibilté avec l'utilisateur
     scanf("%i", &monTableau[indiceDansTableau]);
-    return monTableau[100];
+    return;
 }
 
 /* Fonction qui permet de renvoyer la valeur la plus élevée du tableau
@@ -246,11 +259,12 @@ int saisirValeurDansTableau(int indiceDansTableau, int monTableau[100]){
 * - OUT : La valeur la plus élevée dans le tableau
 */
 
-int plusGrandElementTableau(int monTableau[100], int N){
+int plusGrandElementTableau(int monTableau[100], int N)
+{
     int i = 0, plusGrand = 0;
     for (i = 0; i < N; i++)
     {
-        plusGrand = (monTableau[i] > plusGrand)? monTableau[i] : plusGrand ;
+        plusGrand = (monTableau[i] > plusGrand)? monTableau[i] : plusGrand ;                // condition ternaire qui permet de rentrer trouver le plus grand élément du tableau
     }
     return plusGrand;
 }
@@ -266,8 +280,9 @@ int plusGrandElementTableau(int monTableau[100], int N){
 * - OUT : La valeur dans le tableau bien située
 */
 
-int saisirValeursTableau(int tableau2D[NB_LIGNES][NB_COLONNES], int indiceLigne, int indiceColonne){
-    printf("Saisir la valeur a stocker dans l'espace d'indice de ligne %i ", indiceLigne + 1);
+int saisirValeursTableau(int tableau2D[NB_LIGNES][NB_COLONNES], int indiceLigne, int indiceColonne)
+{
+    printf("Saisir la valeur a stocker dans l'espace d'indice de ligne %i ", indiceLigne + 1);           // toujours pour plus de lisibilité dans le tableau
     printf("et d'indice de colonne %i \n>", indiceColonne + 1);
     scanf("%i", &tableau2D[indiceLigne][indiceColonne]);
     return tableau2D[indiceColonne][indiceColonne];
@@ -279,10 +294,11 @@ int saisirValeursTableau(int tableau2D[NB_LIGNES][NB_COLONNES], int indiceLigne,
 * - OUT : le tableau affiché dans la console
 */
 
-void afficherTableau(int tableauAffiche[NB_LIGNES][NB_COLONNES]){
-    for (int a = 0; a < NB_LIGNES; a++)
+void afficherTableau(int tableauAffiche[NB_LIGNES][NB_COLONNES])
+{
+    for (int a = 0; a < NB_LIGNES; a++)                // parcours en second temps les lignes après avoir rentré chaque élément de la ligne précédente
     {
-        for (int b = 0; b < NB_COLONNES; b++)
+        for (int b = 0; b < NB_COLONNES; b++)             // parcours chaque colonne d'une ligne
         {
             printf("%d ", tableauAffiche[a][b]);
         }
@@ -298,14 +314,15 @@ void afficherTableau(int tableauAffiche[NB_LIGNES][NB_COLONNES]){
 * - OUT : le tableau qui est affiché en ligne
 */
 
-void transformerTableau2DEnligne(int tableauDeuxDim[NB_LIGNES][NB_COLONNES], int tableauEnligne[NB_LIGNES * NB_COLONNES]){
+void transformerTableau2DEnligne(int tableauDeuxDim[NB_LIGNES][NB_COLONNES], int tableauEnligne[NB_LIGNES * NB_COLONNES])
+{
     int  i = 0, j = 0;
-    for (j = 0; j < NB_COLONNES; j++)
+    for (i = 0; i < NB_LIGNES; i++)                         // on parcours en second temps les lignes apres avoir transvasé la ligne précédente
     {
-        for(i = 0; i < NB_LIGNES; i++)
+        for(j = 0; j < NB_COLONNES; j++)                        //d'abord on parcours toute une ligne
         {
-            tableauEnligne[j + i * NB_COLONNES] = tableauDeuxDim[i][j];
-        }
+            tableauEnligne[j + i * NB_COLONNES] = tableauDeuxDim[i][j];                // c'est la que réside la force de la fonction car on place les lignes du tableau les unes après les autres dans un tableau en ligne
+        }                                                                              //Donc l'élément en position [i][j] va à la place [j+i*NB_COLONNES]
     }
     return;
 }
@@ -316,12 +333,12 @@ void transformerTableau2DEnligne(int tableauDeuxDim[NB_LIGNES][NB_COLONNES], int
 * - OUT : le tableau affiché dans la console
 */
 
-void afficherTableau1D(int tableau1D[NB_LIGNES * NB_COLONNES]){
+void afficherTableau1D(int tableau1D[NB_LIGNES * NB_COLONNES])
+{
     int i = 0;
-    for (i = 0; i < NB_LIGNES * NB_COLONNES; i++)
+    for (i = 0; i < NB_LIGNES * NB_COLONNES; i++)                            // cette fonction permet d'afficher le tableau en retour de la fonction precedente (taille compatible)
     {
         printf("%d ", tableau1D[i]);
     }
     return;
 }
-

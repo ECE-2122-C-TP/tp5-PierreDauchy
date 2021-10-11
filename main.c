@@ -12,7 +12,8 @@ int main(void){
     return 0;
 }*/
 
-int main(void) {
+int main(void)
+{
     int choixExercice = 0;
     printf("=====\tTP5 : Les structures et tableaux\t=====\n");
     do {

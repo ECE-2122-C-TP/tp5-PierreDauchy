@@ -33,7 +33,7 @@ NombreRationnel simplification(NombreRationnel nbR1);
  *******/
 
 int saisirNombreDeValeursTableau (void);
-int saisirValeurDansTableau(int indiceDansTableau, int monTableau[100]);
+void saisirValeurDansTableau(int indiceDansTableau, int monTableau[100]);
 int plusGrandElementTableau(int monTableau[100], int N);
 
 /*******

@@ -4,14 +4,16 @@
 #include <stdio.h>
 #include "fonctions.h"
 
-void exClasses(void){
+void exClasses(void)
+{
     Ecole ecole1;
     ecole1 = saisirInfosBis();
     afficherInfos(ecole1);
     return ;
 }
 
-void ex1(){
+void ex1()
+{
     int choixRationnel = 0;
     /*
      * methode avant consigne avec pgcd
@@ -50,7 +52,8 @@ void ex1(){
     return;
 }
 
-void ex2(){
+void ex2()
+{
     int monTableau[100] = {0}, i = 0, N = saisirNombreDeValeursTableau();
     for (i = 0; i < N ; i++)
     {
@@ -60,7 +63,8 @@ void ex2(){
     return ;
 }
 
-void ex3(){
+void ex3()
+{
     int tableau2D[NB_LIGNES][NB_COLONNES] = {{0}}, tableauEnLgne[NB_LIGNES * NB_COLONNES] = {0}, i = 0, j = 0;
     for (i = 0; i < NB_LIGNES; i++)
     {
